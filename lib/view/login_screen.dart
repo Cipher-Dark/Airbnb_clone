@@ -1,4 +1,7 @@
+import 'package:airbnb/Authentication/google_authenticaition.dart';
+import 'package:airbnb/view/app_home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -83,11 +86,116 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                     ),
+                    SizedBox(height: size.height * .026),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            height: 1,
+                            color: Colors.black26,
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          child: Text(
+                            "or",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                            height: 1,
+                            color: Colors.black26,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: size.height * .015),
+                    socialIconsButtons(
+                      size,
+                      Icons.facebook,
+                      "Continue with Facebook",
+                      Colors.blue,
+                      30.0,
+                    ),
+                    InkWell(
+                      onTap: () async {
+                        await FirebaseAuthService().signInwithGoogle();
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => AppHomeScreen()),
+                        );
+                      },
+                      child: socialIconsButtons(
+                        size,
+                        FontAwesomeIcons.google,
+                        "Continue with Google",
+                        Colors.pink,
+                        27.0,
+                      ),
+                    ),
+                    socialIconsButtons(
+                      size,
+                      Icons.apple,
+                      "Continue with Apple",
+                      Colors.black,
+                      30.0,
+                    ),
+                    socialIconsButtons(
+                      size,
+                      Icons.email_outlined,
+                      "Continue with email",
+                      Colors.black,
+                      30.0,
+                    ),
+                    SizedBox(height: 10),
+                    Center(
+                      child: Text(
+                        "Need help?",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 17,
+                        ),
+                      ),
+                    )
                   ],
                 ),
               )
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  Padding socialIconsButtons(Size size, icon, String name, color, iconSize) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 15),
+      child: Container(
+        width: size.width,
+        padding: EdgeInsets.symmetric(vertical: 11),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(),
+        ),
+        child: Row(
+          children: [
+            SizedBox(width: size.width * .05),
+            Icon(
+              icon,
+              color: color,
+              size: iconSize,
+            ),
+            SizedBox(width: size.width * .05),
+            Text(
+              name,
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            SizedBox(width: 10),
+          ],
         ),
       ),
     );
