@@ -17,9 +17,11 @@ class FirebaseAuthService {
           idToken: googleSignInAuthentication.idToken,
         );
         await auth.signInWithCredential(authCredential);
+
+        log("$authCredential");
       }
     } on FirebaseAuthException catch (e) {
-      log("Error log     \n" + e.toString());
+      log("Error log \n$e");
     }
   }
 }
