@@ -1,5 +1,5 @@
 import 'package:airbnb/Authentication/google_authenticaition.dart';
-import 'package:airbnb/view/app_home_screen.dart';
+import 'package:airbnb/view/bottom_nav/app_main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -123,7 +123,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         await FirebaseAuthService().signInwithGoogle();
                         Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(builder: (context) => AppHomeScreen()),
+                          MaterialPageRoute(builder: (context) => AppMainScreen()),
                         );
                       },
                       child: socialIconsButtons(
@@ -157,10 +157,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           fontSize: 17,
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),
