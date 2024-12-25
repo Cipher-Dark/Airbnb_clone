@@ -1,9 +1,9 @@
 import 'dart:developer';
 
+import 'package:airbnb/components/place_detail_screen.dart';
 import 'package:another_carousel_pro/another_carousel_pro.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import '';
 
 class DisplayPlaces extends StatefulWidget {
   const DisplayPlaces({super.key});
@@ -31,7 +31,9 @@ class _DisplayPlacesState extends State<DisplayPlaces> {
                 return Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (_) => PlaceDetailScreen(place: place)));
+                    },
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
