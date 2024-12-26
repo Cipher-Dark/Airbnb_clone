@@ -123,7 +123,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         await FirebaseAuthService().signInwithGoogle();
                         Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(builder: (context) => AppMainScreen()),
+                          MaterialPageRoute(
+                            builder: (context) => const AppMainScreen(),
+                          ),
                         );
                       },
                       child: socialIconsButtons(
